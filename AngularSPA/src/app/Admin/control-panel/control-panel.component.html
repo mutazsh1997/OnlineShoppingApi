@@ -1,0 +1,17 @@
+<mat-toolbar class="navbar" color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h2>
+        <a [routerLink]="[ '/' ]">Eshopping</a>
+    </h2>
+</mat-toolbar>
+<mat-drawer-container autosize>
+    <mat-drawer #drawer class="side-nav" mode="side" [opened]="getWidth > 750">
+        <app-sidebar (changeRoute)="drawer.toggle()">
+        </app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content class="content">
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

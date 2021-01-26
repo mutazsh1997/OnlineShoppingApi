@@ -1,0 +1,28 @@
+<section>
+    <form method="POST" #categoryForm="ngForm" (ngSubmit)="onSubmitcategory(categoryForm)">
+        <input ngModel class="create-input" type="text" name="categoryName" placeholder="category name" required>
+        <button mat-button class="create-btn" type="submit">create category</button>
+    </form>
+</section>
+
+<section class="category-list">
+
+    <ul class="category-list__header">
+        <li>id</li>
+        <li>category name</li>
+        <li>products count</li>
+        <li>update</li>
+    </ul>
+
+    <ul *ngFor="let category of categories">
+        <li>{{ category.id }}</li>
+        <li>{{ category.categoryName }}</li>
+        <li>{{ category.productCount }}</li>
+        <li>
+            <button mat-button color="secondary" (click)="editName(category.id)" class="btn btn__update">
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </li>
+    </ul>
+
+</section>

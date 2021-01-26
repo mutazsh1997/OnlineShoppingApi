@@ -1,0 +1,53 @@
+<div class="carousel">
+    <div class="carousel-arrow">
+        <span class="fa  fa-angle-left arrow" (click)="previes()"></span>
+        <span class="fa  fa-angle-right arrow " (click)="next()"></span>
+    </div>
+
+    <div *ngFor="let item of items; index as i" class="item item-animate-right" [ngClass]="{'hide': itemToDisplay != i}"
+        [style.background-image]="'linear-gradient('+item.colorA+', '+item.colorB+'), url('+item.img+')' | sanitizeStyle"
+        [ngStyle]="{'transform-origin': transform == 'next' ? 'left top' : 'right bottom'}">
+        <div class="carousel-content">
+            <h1>{{ item.titleA }}</h1>
+            <p>{{ item.titleB }}</p>
+        </div>
+    </div>
+    <div class="carousel-caption">
+        <ul>
+            <li *ngFor="let item of items; index as i" style="margin-right: 10px; cursor: pointer;"
+                (click)="itemToDisplay = i"><i [ngClass]="{'fa-circle' : itemToDisplay == i }" class="fa fa-circle-o"
+                    style="color: rgb(247, 247, 247);"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="position: relative;">
+    <div class="carousel-footer">
+        <div>
+            <svg id="local_shipping-black-18dp" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24">
+                <path id="Path_157" data-name="Path 157" d="M0,0H24V24H0Z" fill="rgba(0,0,0,0)" />
+                <path id="Path_158" data-name="Path 158"
+                    d="M20,8H17V4H3A2.006,2.006,0,0,0,1,6V17H3a3,3,0,0,0,6,0h6a3,3,0,0,0,6,0h2V12ZM6,18.5A1.5,1.5,0,1,1,7.5,17,1.5,1.5,0,0,1,6,18.5Zm13.5-9L21.46,12H17V9.5Zm-1.5,9A1.5,1.5,0,1,1,19.5,17,1.5,1.5,0,0,1,18,18.5Z"
+                    fill="#536dfe" />
+            </svg>
+            <span class="svg-text">Free shipping</span>
+        </div>
+        <div>
+            <p class="doller-sign">
+                <span>$</span>
+            </p>
+            <span>Cash on delivery</span>
+        </div>
+        <div>
+            <svg id="autorenew-black-18dp" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24">
+                <path id="Path_155" data-name="Path 155" d="M0,0H24V24H0Z" fill="rgba(0,0,0,0)" />
+                <path id="Path_156" data-name="Path 156"
+                    d="M12,6V9l4-4L12,1V4A7.986,7.986,0,0,0,5.24,16.26L6.7,14.8A5.87,5.87,0,0,1,6,12,6,6,0,0,1,12,6Zm6.76,1.74L17.3,9.2A5.99,5.99,0,0,1,12,18V15L8,19l4,4V20A7.986,7.986,0,0,0,18.76,7.74Z"
+                    fill="#536dfe" />
+            </svg>
+            <span class="svg-text">30 days to return</span>
+        </div>
+    </div>
+</div>

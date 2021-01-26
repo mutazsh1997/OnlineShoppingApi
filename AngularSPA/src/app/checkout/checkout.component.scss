@@ -1,0 +1,106 @@
+@import "../variables.scss";
+@import "responsive.mixin.scss";
+
+.check-out {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.5);
+    padding: 30px;
+    margin-top: 22px;
+    border-radius: 5px;
+
+    & h3 {
+        font-size: 20px;
+        font-weight: normal;
+        text-transform: capitalize;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    & form {
+        margin: 10px auto;
+        display: flex;
+        flex-wrap: wrap;
+
+        & .form-group {
+            margin-right: auto;
+            margin-bottom: 15px;
+            width: 30%;
+            &-saveBox {
+                width: 100%;
+                display: flex;
+                align-items: center;
+            }
+            @include screen("phone") {
+                width: 100%;
+            }
+
+            & input {
+                padding: 10px;
+                border-radius: 5px;
+                border: 1.5px solid;
+                width: 100%;
+
+                &[type="checkbox"] {
+                    width: 4%;
+                    cursor: pointer;
+
+                    & + label {
+                        cursor: pointer;
+                        @include screen("tablet-portrait") {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+
+                &.ng-touched.ng-invalid {
+                    border-color: $red-color;
+                    &:focus {
+                        outline-color: $red-color;
+                    }
+                }
+                &.ng-valid {
+                    border-color: $primary-color;
+                    &:focus {
+                        outline-color: $primary-color;
+                    }
+                }
+            }
+            &.submit-btn {
+                width: 20%;
+
+                @include screen("tablet-landscape") {
+                    width: 30%;
+                }
+                @include screen("phone") {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                & button {
+                    border: 0;
+                    color: #fff;
+                    font-size: 20px;
+                    text-transform: capitalize;
+                    width: 70%;
+                    margin: 0 auto;
+                    padding: 10px;
+                    text-align: center;
+                    margin-top: 10px;
+                    cursor: pointer;
+                    background: $primary-color-dark;
+                    &:focus {
+                        outline-color: $primary-color;
+                    }
+                    &:disabled {
+                        background: #f44336;
+                        cursor: not-allowed;
+                        &:focus {
+                            outline-color: currentColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

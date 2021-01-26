@@ -1,0 +1,49 @@
+.create-input {
+    padding: 10px;
+}
+.create-btn {
+    background: #536dfe;
+    border-radius: 0;
+    color: #fff;
+    margin-left: 20px;
+    text-transform: capitalize;
+    transition: background-color 0.5s;
+    &:hover {
+        color: darken($color: #fff, $amount: 2);
+        background-color: darken($color: #536dfe, $amount: 5);
+    }
+}
+
+.category-list {
+    margin-top: 20px;
+    & ul {
+        display: flex;
+        justify-content: space-between;
+
+        & li {
+            width: 25%;
+            border: 3px solid rgb(201, 201, 201);
+            padding: 8px;
+        }
+        &:nth-child(1) {
+            & li {
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+.btn {
+    width: 100%;
+    color: #fff;
+
+    &__update {
+        background: #536dfe;
+    }
+    &__delete {
+        background-color: #f44336;
+    }
+}
+mat-icon {
+    width: auto;
+    height: auto;
+}

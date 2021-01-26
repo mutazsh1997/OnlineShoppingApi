@@ -1,0 +1,60 @@
+<div class="product-detalis">
+    <div class="col-6">
+        <div class="product-detalis__galary">
+            <div class="product-detalis__mainImg">
+                <img [src]="imageToDisplayUrl" [alt]="productDetails.name">
+            </div>
+            <div class="product-detalis__sliderContainer">
+                <ul #sliderScroll>
+                    <li class="product-detalis__images" *ngFor="let img of productDetails.photos"
+                        (click)="imageToDisplay(img.url)">
+                        <div class="product-detalis__images__box">
+                            <img [src]="img.url" [alt]="img.description">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="product-detalis__header">
+            <h2>{{ productDetails.name }}</h2>
+            <h4>{{ productDetails.category.categoryName }}</h4>
+        </div>
+        <div class="product-detalis__description">
+            <pre>{{ productDetails.productDescription }}</pre>
+        </div>
+        <hr>
+        <div class="product-detalis__info">
+            <div class="product-detalis__info-price">
+                <p>Price: {{ productDetails.price | currency:"ILS" }}</p>
+            </div>
+            <div class="product-detalis__info-colors">
+                <p>color:</p>
+                <ul>
+                    <li *ngFor="let color of productDetails.colors" (click)="selectColor(color)"
+                        [style.background-color]='color.color' [ngClass]="{'selected': color.isSelected}">
+                    </li>
+                </ul>
+            </div>
+            <div class="product-detalis__info-sizes">
+                <p>size:</p>
+                <ul>
+                    <li style="cursor: pointer;" *ngFor="let size of productDetails.sizes" (click)="selectSize(size)"
+                        [ngClass]="{'selected': size.isSelected}">{{ size.size }}</li>
+                </ul>
+            </div>
+            <div class="product-detalis__info-quantity">
+                <p>Quantity:</p>
+                <input type="number" (change)="selectQuantity(quantity)" #quantity value="1">
+            </div>
+            <button class="product-detalis__addToCart" (click)="addToCart(productDetails.id)">Add to cart</button>
+        </div>
+    </div>
+
+</div>
+<div class="more-product">
+    <h2>more products</h2>
+    <Products-list></Products-list>
+</div>

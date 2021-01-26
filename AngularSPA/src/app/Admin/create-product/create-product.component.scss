@@ -1,0 +1,192 @@
+@import "responsive.mixin.scss";
+
+.create-container {
+    min-height: 60vh;
+    background-color: #eee;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    @include screen("phone") {
+        padding: 10px;
+        height: 81vh;
+    }
+    @include screen("smPhone") {
+        height: 100vh;
+    }
+}
+
+.creating-progress {
+    padding: 0 20px;
+    & ul {
+        margin-top: 20px;
+
+        & li {
+            width: 30%;
+            float: left;
+            position: relative;
+
+            &:last-child {
+                width: auto;
+            }
+            @include screen("phone") {
+                width: 25%;
+            }
+            & div:nth-child(1) {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 50%;
+                text-align: center;
+                background-color: #536dfe;
+                color: #fff;
+                position: relative;
+                display: inline-block;
+                z-index: 12;
+                transition: background-color 0.5s, box-shadow 0.2s;
+                &.active {
+                    box-shadow: 0 0 10px rgba(10, 10, 10, 0.39);
+                    background-color: rgb(36, 139, 22);
+                }
+            }
+            & div.divider {
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background: #536dfe;
+                top: 50%;
+                z-index: 9;
+            }
+        }
+    }
+}
+.product-proprties {
+    margin-bottom: 20px;
+    &-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 10px;
+
+        & p {
+            font-size: 18px;
+        }
+    }
+    & .add-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 10px;
+        background: #5372fe;
+        display: inline-block;
+    }
+
+    &__color {
+        display: flex;
+        align-items: center;
+        & input {
+            padding: 0;
+            border: 0;
+            width: 40px;
+            height: 40px;
+
+            cursor: pointer;
+        }
+        & span {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            margin: 0 10px;
+            background: #fe5e53;
+            display: inline-block;
+        }
+    }
+    &__size {
+        display: flex;
+        align-items: center;
+        & input {
+            padding: 10px;
+        }
+        & span {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            margin: 0 10px;
+            background: #fe5e53;
+            display: inline-block;
+        }
+    }
+}
+.submit-btn {
+    position: absolute;
+    bottom: 23px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+
+    & button {
+        border: 0;
+        color: #fff;
+        font-size: 16px;
+        text-transform: capitalize;
+        border-radius: 5px;
+        margin: 0 auto;
+        margin-right: 20px;
+        text-align: center;
+        margin-top: 10px;
+        background: #536dfe;
+        cursor: pointer;
+
+        @include screen("phone") {
+            margin-top: 0;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            background-color: orangered;
+        }
+    }
+}
+
+.product-show {
+    display: flex;
+    justify-content: space-between;
+
+    &__image {
+        width: 40%;
+        height: 290px;
+        background: #f7f7f78a;
+        margin: 0 30px 0 0;
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__desc {
+        width: 60%;
+
+        & ul {
+            & li {
+                margin-bottom: 20px;
+                border-bottom: 1px solid rgba(24, 24, 24, 0.253);
+            }
+        }
+    }
+}
+.mat-form-field-wrapper {
+    padding: 10px;
+    @include screen("phone") {
+        padding: 0;
+    }
+}

@@ -1,0 +1,12 @@
+<section class="popup">
+    <div class="popup__overlay" #overlay>
+        <div class="popup__content">
+
+            <button mat-icon-button class="close-btn" (click)="closePopup()">
+                <i class="fa fa-times"></i>
+            </button>
+
+            <app-regsirations [authMode]="authMode" (authentications)="closePopup()"></app-regsirations>
+        </div>
+    </div>
+</section>

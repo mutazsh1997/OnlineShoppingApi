@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.container {
+    max-width: 1317px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+i {
+    font-family: "FontAwesome";
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: middle;
+}
+
+.material-icons {
+    line-height: 0;
+    vertical-align: middle;
+}
+.hide {
+    display: none;
+}

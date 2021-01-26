@@ -1,0 +1,48 @@
+@import "responsive.mixin.scss";
+
+.createProduct {
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
+    text-align: center;
+
+    .form-Group {
+        width: 33%;
+        float: left;
+        overflow: hidden;
+
+        @include screen("phone") {
+            width: 100%;
+        }
+
+        & mat-form-field {
+            width: 90%;
+        }
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        & button {
+            background: #536dfe;
+            text-align: center;
+            color: #fff;
+            border-radius: 5px;
+            width: 50%;
+
+            &:disabled {
+                cursor: not-allowed;
+                background-color: #fe5e53;
+            }
+        }
+
+        &.submit-btn {
+           bottom: 0;
+        }
+    }
+}
+::ng-deep.mat-form-field-outline {
+    background-color: #fff;
+    border-radius: 5px;
+}

@@ -1,0 +1,43 @@
+@import "../../variables.scss";
+@import "responsive.mixin.scss";
+
+mat-drawer-container {
+    height: 100%;
+
+    & .side-nav {
+        width: 200px;
+    }
+    & .content {
+        padding: 20px;
+        @include screen("phone") {
+            padding: 0;
+        }
+    }
+    & mat-drawer.side-nav{
+        @include screen("phone") {
+            width: 100%;
+        }
+    }
+}
+.navbar {
+    background-color: $primary-color-dark;
+    display: flex;
+    justify-content: space-between;
+
+    & h2 {
+        font-size: 32px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 5px;
+        @include screen("tablet-portrait") {
+            font-size: 28px;
+        }
+        @include screen("phone") {
+            font-size: 18px;
+        }
+        & a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}

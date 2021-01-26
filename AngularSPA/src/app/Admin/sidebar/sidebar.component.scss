@@ -1,0 +1,10 @@
+@import "../../variables.scss";
+a {
+    display: block;
+    border-radius: 0;
+    
+    &.active {
+        background-color: $accent-color;
+        color: #ffffff;
+    }
+}

@@ -1,0 +1,72 @@
+<nav>
+    <ul>
+        <li [ngClass]="{'active': states == 'OnWay'}" (click)="orderOption('OnWay')">on way</li>
+        <li [ngClass]="{'active': states == 'delivered'}" (click)="orderOption('delivered')">delivered</li>
+    </ul>
+</nav>
+
+<section>
+    
+    <details class="order-section" *ngFor="let order of orders | orderStateFilter:states">
+        <summary>
+            <div>
+                <ul>
+                    <li>
+                        order id: {{ order?.orderId }}
+                    </li>
+                    <li>
+                        order date: {{ order?.orderDate | date }}
+                    </li>
+                    <li>
+                        total: {{ order.total | currency:'USD'}}
+                    </li>
+                    <li>
+                        states: {{ order.hasBeenShipped }}
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        {{ order.firstName }} {{order.lastName}}
+                    </li>
+                    <li>
+                        {{ order.email }}
+                    </li>
+                    <li>
+                        {{ order.city + ' ' + order.address }}
+                    </li>
+                    <li>
+                        {{ order.phone }}
+                    </li>
+                </ul>
+            </div>
+        </summary>
+        <div class="order-details" *ngFor="let details of order.orderDetails">
+            <figure>
+                <figcaption>
+                    <p>
+                        product id: {{ details.productId }}
+                    </p>
+                </figcaption>
+                <img [src]="details.productPhoto" alt="details">
+                <figcaption>
+                    <p>
+                        {{ details.productName}}
+                    </p>
+                    <span>
+                        price: {{ details.productPrice | currency:'USD' }}
+                    </span>
+                    <span>
+                        quantity: {{ details.quantity }}
+                    </span>
+                    <span style="display: block; width: 30px; height: 10px;" [style.background-color]="details.color">
+
+                    </span>
+                    <span>
+                        size: {{ details.size }}
+                    </span>
+                </figcaption>
+            </figure>
+
+        </div>
+    </details>
+</section>

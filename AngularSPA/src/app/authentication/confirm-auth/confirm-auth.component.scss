@@ -1,0 +1,41 @@
+@import "../../variables.scss";
+
+.success {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+    & h3 {
+        color: $accent-color;
+        margin-bottom: 10px;
+    }
+    & p {
+        color: $accent-color;
+        margin-bottom: 24px;
+    }
+}
+.failed {
+    text-align: center;
+    margin: 25px auto;
+    min-height: 39vh;
+    font-size: 20px;
+    & h3 {
+        color: $red-color;
+        margin-bottom: 10px;
+    }
+    & p {
+        color: $red-color;
+        margin-bottom: 10px;
+    }
+    & .resendButton {
+        border: 0;
+        color: #fff;
+        font-size: 15px;
+        text-transform: capitalize;
+        margin: 0 auto;
+        padding: 10px;
+        text-align: center;
+        margin-top: 10px;
+        cursor: pointer;
+        background: $primary-color-dark;
+    }
+}

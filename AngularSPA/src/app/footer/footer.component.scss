@@ -1,0 +1,86 @@
+@import "../variables.scss";
+@import "responsive.mixin.scss";
+
+footer {
+    padding: 0 16px;
+    background-color: $primary-color-dark;
+    margin-top: 30px;
+
+    @include screen("smPhone") {
+        padding: 16px;
+    }
+
+    & .top-footer {
+        display: flex;
+        justify-content: space-between;
+        min-height: 260px;
+        align-items: center;
+
+        @include screen("smPhone") {
+            flex-direction: column;
+            align-items: flex-start;
+            padding-bottom: 10px;
+        }
+
+        & div {
+            & h3 {
+                color: $primary-color-text;
+                text-transform: uppercase;
+                font-weight: 300;
+                margin-bottom: 12px;
+            }
+            & ul {
+                color: $primary-color-text;
+
+                & li {
+                    text-transform: capitalize;
+                    display: block;
+                    margin-bottom: 10px;
+                    & mat-icon {
+                        width: auto;
+                        height: auto;
+                    }
+                }
+            }
+            &.google-map {
+                background: #fff;
+                width: 50%;
+                height: 200px;
+                @include screen("smPhone") {
+                    width: 100%;
+                    margin-top: 5px;
+                }
+
+                & agm-map {
+                    height: 100%;
+                }
+            }
+        }
+    }
+    & .bottom-footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid $divider-color;
+        padding: 10px 0;
+
+        @include screen("smPhone") {
+            flex-direction: column;
+            padding-bottom: 0;
+        }
+
+        & p {
+            color: $primary-color-text;
+            text-transform: capitalize;
+            @include screen("smPhone") {
+                &:nth-child(1) {
+                    margin-bottom: 5px;
+                }
+            }
+            & a {
+                text-decoration: none;
+                color: inherit;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

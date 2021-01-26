@@ -1,0 +1,117 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="first-nav">
+    <div class="info-contact">
+      <ul class="info-contact__list">
+        <li>
+          <span class="material-icons">
+            phone
+          </span>
+          <span>
+            46546512
+          </span>
+        </li>
+        <li class="email">
+          <mat-icon>email</mat-icon>
+          <span>
+            example@email.com
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="right-content">
+        <li class="social top-nav-content">
+          <a href="#facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#insgram">
+            <i class="fas fa-instagram"></i>
+          </a>
+          <a href="#twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </li>
+        <!--Language drop -->
+        <li class="top-nav-content">
+          <button mat-button (click)="dropLangaugeList()">
+            <mat-icon>language</mat-icon>
+            <span style="text-transform: capitalize;">{{ selectedLanguage }}
+              <i class="fa fa-angle-down" #LanguageArrowIcon></i>
+            </span>
+          </button>
+          <ul class="dorp-list" #LanguageDropList>
+            <li style="text-transform: capitalize;" *ngFor="let language of languages"
+              (click)="changeLangauge(language)">{{ language }}</li>
+          </ul>
+        </li>
+        <!--Account drop -->
+        <li class="top-nav-content">
+          <button mat-button (click)="dropAccount()">
+            <mat-icon>person</mat-icon>
+            <span style="text-transform: capitalize;">Account
+              <i class="fa fa-angle-down" #AccountArrowIcon></i></span>
+          </button>
+          <ul class="dorp-list" #accountDrop>
+            <li class="auth-buttons" *ngIf="checkIflogedIn() == false">
+              <button mat-button (click)="openAuthPopup('regiter')">regiter</button>
+              <button mat-button (click)="openAuthPopup('login')">login</button>
+            </li>
+            <li class="auth-Info" *ngIf="checkIflogedIn() == true">
+              <p>welcome: <strong>{{ auth.userName }}</strong></p>
+            </li>
+            <hr>
+            <li class="pagelinks">
+              <a [routerLink]="'orderCoustmer'">my orders</a>
+            </li>
+            <li class="pagelinks" *hasRole="['Admin']">
+              <a [routerLink]="'controlPanel/createProduct'">control Panel</a>
+            </li>
+            <li class="pagelinks" *ngIf="checkIflogedIn() == true">
+              <a (click)="logout()">logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="second-nav">
+    <div class="title">
+      <h2 class="title-logo"><a [routerLink]="[ '/' ]">Eshopping</a></h2>
+    </div>
+
+    <div class="search-bar" [ngClass]="{'search-small': openSearch}">
+      <form method="POST" (ngSubmit)="SearchPorduct(searchProduct)">
+        <select [ngClass]="{'small-screen': openSearch}" (change)="filterCategory(filterProduct.value)" #filterProduct
+          name="category" id="category">
+          <option>All Porducts</option>
+          <option *ngFor="let category of categories" [value]="category.categoryName">
+            {{ category.categoryName }}
+          </option>
+        </select>
+        <input type="search" name="QuerySearch" (keyup)="displaySubmit(searchProduct)" #searchProduct
+          [ngClass]="{'small-screen': openSearch}" id="search" placeholder="search for...">
+        <label for="search">
+          <i [ngStyle]="{'color': openSearch ? '#f44336' : ''}" [ngClass]="{'fa-search-minus': openSearch}"
+            class="fa fa-search">
+          </i></label>
+        <button [ngClass]="{'activeSearch': searchQuery}" mat-icon-button type="submit">
+          <mat-icon>check</mat-icon>
+        </button>
+      </form>
+    </div>
+
+    <div class="cart-button">
+      <button [routerLink]="[ '/shoppingCart' ]" mat-icon-button class="example-icon shopping-icon"
+        aria-label="Example icon-button with heart icon">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="item-in-cart">{{ cartService.itemsInCart }}</span>
+        <span class="total-in-cart">{{ cartService.total | currency:'USD' }}</span>
+      </button>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-authentication-popup *ngIf="authentications == true" (authentications)="authentications = false"
+  [authMode]="authMode"></app-authentication-popup>

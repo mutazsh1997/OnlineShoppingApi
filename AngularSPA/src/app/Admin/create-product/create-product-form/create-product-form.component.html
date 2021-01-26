@@ -1,0 +1,50 @@
+<div class="createProduct">
+    <form method="POST" [formGroup]="createProductForm" (ngSubmit)="createProduct()">
+
+        <div class="form-Group">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Product Name</mat-label>
+                    <input formControlName="Name" matInput type="text" placeholder="Product Name" required>
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div class="form-Group">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Product Price</mat-label>
+                    <input formControlName="Price" matInput type="number" placeholder="Product Price" required>
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div class="form-Group">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Select category</mat-label>
+                    <mat-select formControlName="categoryId">
+                        <mat-option *ngFor="let category of categories" [value]="category.id">
+                            {{category.categoryName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div class="form-Group" style="width: 100%;">
+            <p>
+                <mat-form-field style="width: 96%;" appearance="outline">
+                    <mat-label>Product Description</mat-label>
+                    <textarea formControlName="productDescription" matInput
+                        style="width: 100%; height:18vh; resize: none;"></textarea>
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div class="form-Group submit-btn">
+            <button mat-button type="submit" [disabled]="createProductForm.invalid">{{ productStates }}</button>
+        </div>
+
+    </form>
+</div>

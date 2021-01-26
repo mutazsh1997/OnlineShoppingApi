@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="title">
+        <h3>Upload images {{imagesToUpload.length}} of 8</h3>
+    </div>
+    <div class="image-container">
+        <ul class="image-container__list" *ngFor="let selectedFile of selectedFiles">
+            <li class="image-container__img">
+                <img [src]="selectedFile.src" [alt]="selectedFile.file.name">
+            </li>
+            <li class="image-container__name">
+                {{selectedFile.file.name }}
+            </li>
+
+            <div>
+                <li class="image-container__size" *ngIf="selectedFile.file.size >=1048576">
+                    {{selectedFile.file.size / 1048576  | number:'1.0-0' }}<span>mb</span>
+                </li>
+                <li class="image-container__size" *ngIf="selectedFile.file.size >=1024">
+                    {{selectedFile.file.size / 1024  | number:'1.0-0' }}<span>kb</span>
+                </li>
+                <li class=" image-container__size" *ngIf="selectedFile.file.size <= 1024">
+                    {{selectedFile.file.size / 1024  | number }}<span>bytes</span>
+                </li>
+                <li class="image-container__progress">
+                    <progress id="file" max="100" value="{{selectedFile.uploadedPercent}}" style="display: block;"> </progress>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <div class="form-group">
+
+
+        <input type="file" hidden #uploder accept="image/*" multiple (change)="onFileSelected($event , uploder)"
+            class="form-control">
+
+        <button type="button" class="btn btn__select" (click)="uploder.click()">select image</button>
+        <button type="button" class="btn btn__upload" (click)="onUpload()"
+            [disabled]="imagesToUpload.length <= 0">upload</button>
+        <button type="button" class="btn btn__clear" (click)="clearPhotos()">clear All</button>
+    </div>
+
+
+</div>

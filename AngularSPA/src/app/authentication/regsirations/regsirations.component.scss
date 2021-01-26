@@ -1,0 +1,175 @@
+@import "../../variables.scss";
+
+.popup {
+    position: relative;
+    z-index: 101;
+    &__overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: rgba(48, 48, 48, 0.5);
+        animation: fadeIn 0.2s;
+    }
+    & .close-btn {
+        background: $red-color;
+        float: right;
+        top: -10px;
+        font-size: 20px;
+        color: #fff;
+        text-align: center;
+        left: 10px;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        transform-origin: top;
+        &:hover {
+            background: darken($color: $red-color, $amount: 4);
+        }
+        &::after {
+            content: "";
+            clear: both;
+        }
+    }
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        width: 450px;
+        min-height: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        animation: popup 0.3s alternate ease-out;
+        transform-origin: top;
+    }
+
+    &__taps {
+        margin-top: 10px;
+        padding-bottom: 20px;
+        & button {
+            transition: all 0.4s;
+            text-transform: capitalize;
+            font-size: 18px;
+
+            &:nth-child(2) {
+                margin-left: 12px;
+            }
+
+            &.active {
+                background-color: #4575ef;
+                color: #fff;
+            }
+
+            &:hover {
+                background-color: #4575ef;
+                color: #fff;
+            }
+        }
+    }
+    &__register {
+        border-top: 2px solid lighten($color: $divider-color, $amount: 10);
+        border-bottom: 2px solid lighten($color: $divider-color, $amount: 10);
+        padding: 24px 0;
+
+        & form {
+            display: flex;
+            flex-direction: column;
+
+            & input {
+                width: 70%;
+                margin: 10px auto;
+                padding: 10px;
+                border-radius: 0;
+                border: 0;
+                border-bottom: 2px solid #f44336;
+                &:focus {
+                    outline-color: #f44336;
+                }
+                &:valid {
+                    border-bottom: 2px solid $primary-color-dark;
+
+                    &:focus {
+                        outline-color: $primary-color-dark;
+                    }
+                }
+            }
+            & button {
+                border: 0;
+                color: #fff;
+                font-size: 20px;
+                text-transform: capitalize;
+                width: 70%;
+                margin: 0 auto;
+                padding: 10px;
+                text-align: center;
+                margin-top: 10px;
+                cursor: pointer;
+                background: $primary-color-dark;
+                &:focus {
+                    outline-color: $primary-color;
+                }
+                &:disabled {
+                    background: #f44336;
+                    cursor: not-allowed;
+                    &:focus {
+                        outline-color: currentColor;
+                    }
+                }
+            }
+        }
+        & p {
+            background: #f44336;
+            color: #fff;
+            padding: 10px;
+            width: 80%;
+            margin: 20px auto 0;
+        }
+    }
+}
+.content {
+    background-color: #fff;
+    width: 450px;
+    min-height: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+.password__Validator {
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+    color: $red-color;
+}
+.password__confirm {
+   
+    & + label {
+        color: $red-color;
+        text-align: left;
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes popup {
+    0% {
+        transform: translate(-50%, -50%) scaleX(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scaleX(1);
+    }
+}

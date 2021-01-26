@@ -1,0 +1,86 @@
+<div class="mat-elevation-z8">
+    <mat-tab-group (selectedTabChange)="filterOrders($event)">
+        <mat-tab label="On way"> </mat-tab>
+        <mat-tab label="delivering"> </mat-tab>
+    </mat-tab-group>
+
+    <mat-table [dataSource]="listOrders" matSort>
+        <ng-container matColumnDef="orderId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+                Order Id
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.orderId }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef>
+                user name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="showFullInfo(element.firstName ,element.lastName)">
+                {{ element.firstName + '' + element.lastName | sliceText:[sliceNum] }}
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>
+                email
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="showFullInfo(element.email)">
+                {{ element.email | sliceText:[sliceNum] }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef>
+                phone
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="showFullInfo(element.phone)"> {{ element.phone |
+                sliceText:[sliceNum]}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef>
+                address
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="showFullInfo(element.city, element.address)"> 
+                {{ element.city + ' ' + element.address |sliceText:[sliceNum] }}
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="orderDate">
+            <mat-header-cell *matHeaderCellDef>
+                orderDate
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.orderDate | date }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef class="mat-total">
+                total
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="mat-total"> {{ element.total }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button (click)="openDialog(element.orderDetails)" mat-button>
+                    <mat-icon>remove_red_eye</mat-icon>
+                </button>
+                <button *ngIf="element.hasBeenShipped == false" (click)="delivering(element.orderId)" mat-button>
+                    <mat-icon>local_shipping</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                loading data...
+            </mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="noOrders">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                no orders yet
+            </mat-footer-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="orderColumns"></mat-header-row>
+        <mat-row *matRowDef="let row;columns: orderColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': listOrders != null}">
+        </mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noOrders']"
+            [ngClass]="{'hide': !(listOrders != null && listOrders.data.length == 0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5,10,20,40]" [pageSize]="5"></mat-paginator>
+</div>

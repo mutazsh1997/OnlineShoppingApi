@@ -1,0 +1,36 @@
+<div class="check-out">
+    <h3>
+        delivery information
+    </h3>
+    <form method="POST" [formGroup]="createOrderForm" (ngSubmit)="createOrder()">
+
+        <div class="form-group">
+            <input type="text" formControlName="FirstName" placeholder="first name">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="LastName" placeholder="last name">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="Email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="City" placeholder="City">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="Address" placeholder="Address">
+        </div>
+        <div class="form-group">
+            <input type="tel" formControlName="Phone" placeholder="Phone">
+        </div>
+        <div class="form-group form-group-saveBox">
+            <input type="checkbox" id="saveCheckOutData" (change)="saveCheckOutData = !saveCheckOutData"
+                name="saveCheckOutData">
+            <label for="saveCheckOutData">save information</label>
+        </div>
+
+        <div class="form-group submit-btn">
+            <button [disabled]="createOrderForm.invalid" type="submit">confirm</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,6 @@
+<section>
+    <form method="POST" #categoryForm="ngForm" (ngSubmit)="onSubmitcategory(categoryForm)">
+        <input ngModel class="create-input" type="text" name="categoryName" placeholder="new category name" required>
+        <button mat-button class="create-btn" type="submit">edit category name</button>
+    </form>
+</section>

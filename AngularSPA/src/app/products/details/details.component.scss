@@ -1,0 +1,283 @@
+@import "responsive.mixin.scss";
+
+.product-detalis {
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+    box-shadow: 0 0 10px #333;
+    border-radius: 10px;
+    padding: 10px;
+
+    @include screen("tablet-portrait") {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    &__galary {
+        min-height: 400px;
+        width: 100%;
+    }
+
+    &__mainImg {
+        width: 96%;
+        height: 300px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        object-fit: cover;
+        background: #eee;
+        padding: 10px;
+        border-radius: 10px;
+
+        @include screen("tablet-portrait") {
+            width: 100%;
+        }
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__sliderContainer {
+        overflow-y: hidden;
+        overflow-x: scroll;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #d1d1d1;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #536dfe;
+        }
+        &:hover::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        & ul {
+            overflow: hidden;
+            transition: transform 0.5s;
+            display: flex;
+            width: fit-content;
+        }
+    }
+    &__right {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        font-size: 20px;
+        z-index: 99;
+        cursor: pointer;
+    }
+    &__left {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        font-size: 20px;
+        z-index: 99;
+        cursor: pointer;
+    }
+    &__images {
+        width: 120px;
+        height: auto;
+        cursor: pointer;
+        padding: 10px;
+        overflow: hidden;
+        -o-object-fit: cover;
+        float: left;
+        object-fit: cover;
+
+        &__box {
+            width: 100%;
+            height: 100%;
+            background: #eee;
+            border-radius: 10px;
+            padding: 5px;
+            & img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &__header {
+        text-transform: capitalize;
+        & h2 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        & h4 {
+            margin: 8px 0;
+            font-size: 16px;
+            font-weight: 500;
+            &::before {
+                content: "category: ";
+                color: #1b1b1b;
+                font-weight: 400;
+            }
+        }
+    }
+    &__description {
+        line-height: 25px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #1b1b1b;
+    }
+    &__info-price {
+        margin: 15px 0;
+        & p {
+            font-size: 18px;
+            color: #f44336;
+            font-weight: bold;
+        }
+    }
+
+    &__info-colors {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        & p {
+            text-transform: capitalize;
+        }
+        & ul {
+            margin-left: 5px;
+
+            & li {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: transform 0.2s ease-out, box-shadow 0.4s ease-in;
+                box-shadow: 2px 6px 7px rgb(0 0 0 / 0.5);
+                display: inline-block;
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                    box-shadow: 2px 6px 10px rgb(0 0 0 / 0.5);
+                }
+
+                &.selected {
+                    box-shadow: none;
+                    border: 2px solid #eee;
+                }
+            }
+        }
+    }
+    &__info-sizes {
+        display: flex;
+        align-items: center;
+
+        & p {
+            text-transform: capitalize;
+        }
+        & ul {
+            margin-left: 5px;
+            & li {
+                padding: 4px;
+                text-align: center;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: transform 0.2s ease-out, box-shadow 0.4s ease-in;
+                box-shadow: 2px 6px 7px rgb(0 0 0 / 0.5);
+
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                    border: 1px solid #000000;
+                    box-shadow: 2px 6px 10px rgb(0 0 0 / 0.5);
+                }
+
+                &.selected {
+                    box-shadow: none;
+                    border: 2px solid #f44336;
+                }
+            }
+        }
+    }
+    &__info-quantity {
+        margin-top: 14px;
+        &::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        & input[type="number"] {
+            padding: 10px;
+            width: 40%;
+            margin-top: 4px;
+        }
+    }
+    &__addToCart {
+        width: 30%;
+        margin: 14px 0;
+        padding: 10px;
+        cursor: pointer;
+        background: #388e3c;
+        color: #fff;
+        border: 0;
+        box-shadow: 2px 6px 7px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease-out, box-shadow 0.3s;
+
+        @include screen("phone") {
+            width: 50%;
+        }
+
+        &::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+        &:active {
+            outline-color: #f44336;
+            transform: scale(1);
+            box-shadow: none;
+        }
+        &:focus {
+            outline-color: #f44336;
+        }
+    }
+}
+
+.col-6 {
+    width: 50%;
+    float: left;
+
+    &:not(:first-of-type) {
+        margin-left: 50px;
+    }
+    @include screen("tablet-portrait") {
+        width: 100%;
+
+        &:nth-child(1) {
+            margin-bottom: 17px;
+        }
+        &:not(:first-of-type) {
+            margin-left: 0;
+        }
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+.more-product {
+    & h2 {
+        text-transform: uppercase;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,25 @@
+<section>
+    <div class="detailsContainer" *ngFor="let details of orderDetails.orderDetails">
+        <figure>
+            <img [src]="details.productPhoto" [alt]="details.productName">
+        </figure>
+        <ul>
+            <li>
+                product name: <b>{{ details.productName }}</b>
+            </li>
+            <li>
+                quantity: <b> {{ details.quantity }} </b>
+            </li>
+            <li>
+                size : <b>{{ details.size }}</b>
+            </li>
+            <li>
+                price: <b>{{ details.productPrice }}</b>
+            </li>
+            <li class="color">
+                <span>color: </span>
+                <span [style.backgroundColor]="details.color"></span>
+            </li>
+        </ul>
+    </div>
+</section>

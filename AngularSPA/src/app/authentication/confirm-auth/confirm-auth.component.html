@@ -1,0 +1,14 @@
+<ng-container *ngIf="confirmationStatus == true; else confirmFailed">
+    <div class="success">
+        <h3>Your email has been confirm successfully</h3>
+        <p>you can login</p>
+        <app-regsirations></app-regsirations>
+    </div>
+</ng-container>
+<ng-template #confirmFailed>
+    <div class="failed">
+        <h3>there is an error please try again</h3>
+        <p>click button below to resend the message</p>
+        <button (click)="resendEmail()" class="resendButton">resend confirm message</button>
+    </div>
+</ng-template>

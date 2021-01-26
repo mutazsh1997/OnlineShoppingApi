@@ -1,0 +1,48 @@
+<div class="content" [style.marginTop]="mrTop == true ? '30px': ''">
+    <div class="popup__taps">
+        <button mat-button [ngClass]="{'active': authMode == 'regiter'}" (click)="authMode = 'regiter'">regiter</button>
+        <button mat-button [ngClass]="{'active': authMode == 'login'}" (click)="authMode = 'login'">log
+            in</button>
+    </div>
+    <div class="popup__register">
+        <form method="POST" [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()" *ngIf="authMode == 'regiter'">
+            <input type="email" formControlName="Email" placeholder="Your Email" required>
+            <input type="text" formControlName="userName" placeholder="Your Name" required>
+            <input type="password" #Password id="Password" formControlName="Password" placeholder="Your Password"
+                required>
+            <label for="Password">
+                <ul class="password__Validator" *ngIf="registerForm.get('Password').touched">
+                    <li [ngClass]="{'hide': registerForm.get('Password').value.length > 7}">
+                        At least 8 characters in length
+                    </li>
+                    <li [ngClass]="{'hide': lowerCaseValid()}">
+                        Lowercase letters
+                    </li>
+                    <li [ngClass]="{'hide': upperCaseValid()}">
+                        Uppercase letters
+                    </li>
+                    <li [ngClass]="{'hide': numberCaseValid()}">
+                        Numbers
+                    </li>
+                </ul>
+            </label>
+
+            <input type="password" class="password__confirm" #confirmPassword formControlName="confirmPassword"
+                placeholder="Confirm Passwrod" required>
+            <label for="Password"
+                *ngIf="registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')">
+                password is not match
+            </label>
+
+            <button type="submit" [disabled]="registerForm.invalid">regiter</button>
+
+        </form>
+        <form method="POST" #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)" *ngIf="authMode == 'login'">
+            <input type="email" [(ngModel)]="auth.Email" name="Email" placeholder="Your Email" required>
+            <input type="password" [(ngModel)]="auth.Password" name="Password" placeholder="Your Password" required>
+            <button type="submit" [disabled]="loginForm.invalid" [ngClass]="{'form-vaild': loginForm.valid}">sign
+                in</button>
+        </form>
+        <p *ngIf="AuthFalid == true">{{ errMessage }}</p>
+    </div>
+</div>

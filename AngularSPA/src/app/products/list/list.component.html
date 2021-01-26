@@ -1,0 +1,61 @@
+<div class="overlay" [ngClass]="{'admin': adminPanel}" [ngStyle]="{'padding': smallPadding == true ? '1rem 0': ''}">
+    <div *ngIf="(spinner == true || products == null)" style="position: relative;">
+        <spinner></spinner>
+    </div>
+
+    <ng-container *ngIf="products" #productTemplate>
+
+        <div class="container">
+            <div class="col-4" [ngClass]="{'admin': adminPanel}" *ngFor="let product of products; let i=index">
+                <div class="prodcut-card">
+                    <div class="prodcut-card__header" [ngClass]="{'admin': adminPanel}">
+                        <img [src]="product?.photoUrl" [alt]="product.name" [routerLink]="[ '/productDetails']"
+                            [queryParams]="{categoryName: product.category.categoryName ,productId: product.id }">
+                    </div>
+                    <div class="prodcut-card__body" [ngClass]="{'admin': adminPanel}">
+                        <h4>{{ product.category.categoryName }}</h4>
+                        <h3>{{ product.name }}</h3>
+                        <h4 color="primary">{{ product.price | currency:'USD' }}</h4>
+                    </div>
+                    <div class="prodcut-card__footer" *ngIf="adminPanel">
+                        <ul>
+                            <li title="edit" (click)="EditProduct(product)">
+                                <mat-icon>edit</mat-icon>
+                            </li>
+                            <li (click)="aprovedProduct(product)"
+                                [title]="product.isDone == true ? 'unaproved': 'aproved'">
+                                <mat-icon>{{ product.isDone == true ? 'remove' :'done' }}</mat-icon>
+                            </li>
+                            <li (click)="deleteProuct(product)" title="remove">
+                                <i class="fas fa-trash fa-2x"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="queryParams != null && products.length == 0">
+        <div class="no-product">
+            <div>
+                <p>We couldn't find any result for <b>"{{ queryParams }}"</b></p>
+                <p>Please try something else</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="171.91" height="233.162" viewBox="0 0 171.91 233.162">
+
+                <g id="Rectangle_491" data-name="Rectangle 491" transform="translate(96.09 131.838) rotate(-30)"
+                    fill="none" stroke="#212121" stroke-width="7" stroke-dasharray="61 3">
+                    <rect width="20" height="117" stroke="none" />
+                    <rect x="3.5" y="3.5" width="13" height="110" fill="none" />
+                </g>
+                <g id="Ellipse_6" data-name="Ellipse 6" fill="none" stroke="#000" stroke-width="12"
+                    stroke-dasharray="24 4">
+                    <circle cx="70" cy="70" r="70" stroke="none" />
+                    <circle cx="70" cy="70" r="64" fill="none" />
+                </g>
+            </svg>
+        </div>
+    </ng-container>
+
+</div>

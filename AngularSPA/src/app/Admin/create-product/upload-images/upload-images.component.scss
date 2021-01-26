@@ -1,0 +1,73 @@
+@import "../../../variables.scss";
+@import "responsive.mixin.scss";
+
+.title {
+    text-align: center;
+
+    & h3 {
+        text-transform: capitalize;
+    }
+}
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    &__list {
+        width: 15%;
+        margin: 10px;
+        
+        @include screen("phone") {
+            width: 28%;
+        }
+    }
+    &__img {
+        width: auto;
+        height: 60px;
+        overflow: hidden;
+
+
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__name {
+        overflow: hidden;
+    }
+   
+}
+.form-group {
+    position: absolute;
+    bottom: 23px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include screen("phone") {
+        width: 100%;
+    }
+
+    & .btn {
+        padding: 10px;
+        margin-right: 10px;
+        color: #fff;
+        cursor: pointer;
+        border: none;
+
+        &__select {
+            background-color: $primary-color;
+        }
+        &__upload {
+            background-color: $primary-color-dark;
+
+            &:disabled {
+                cursor: not-allowed;
+                background-color: $red-color;
+            }
+        }
+
+        &__clear {
+            background-color: $red-color;
+        }
+    }
+}

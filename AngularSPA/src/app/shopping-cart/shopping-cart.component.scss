@@ -1,0 +1,208 @@
+@import "responsive.mixin.scss";
+@import "../variables.scss";
+
+.shopping {
+    margin-top: 20px;
+    position: relative;
+    min-height: 100vh;
+
+    &__summary-fixed,
+    &__cart {
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: 0 2px 17px rgba(0, 0, 10, 0.47);
+        padding: 20px;
+    }
+
+    &__summary-fixed {
+        width: 20%;
+
+        @include screen("tablet-landscape") {
+            width: 30%;
+        }
+
+        @include screen("tablet-portrait") {
+            width: 70%;
+            margin: 0 auto;
+        }
+    }
+
+    &__summary {
+        width: 20%;
+        position: absolute;
+        top: 0%;
+        right: 100px;
+
+        @include screen("tablet-portrait") {
+            width: 100%;
+        }
+
+        @include screen("tablet-portrait") {
+            position: static;
+            right: 0;
+            top: 0;
+        }
+
+        &-fixed {
+            position: fixed;
+
+            @include screen("tablet-portrait") {
+                position: static;
+            }
+
+            & h2,
+            p {
+                margin-bottom: 10px;
+                text-transform: capitalize;
+            }
+            & h2 {
+                font-weight: 400;
+            }
+
+            & button {
+                width: 100%;
+                background: #536dfe;
+                color: #fff;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &__cart {
+        width: 60%;
+        height: 200px;
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: 0 2px 17px rgba(0, 0, 10, 0.47);
+        margin: 0 0 20px 100px;
+        display: flex;
+        padding: 20px;
+
+        @include screen("tablet-landscape") {
+            margin: 0 0 20px 40px;
+        }
+
+        @include screen("tablet-portrait") {
+            width: 90%;
+            margin: 0 auto 20px;
+        }
+
+        & figcaption {
+            width: 180px;
+            text-align: center;
+            margin-right: 20px;
+            border: 1px solid rgb(112, 112, 112);
+            & img {
+                width: 90%;
+                height: 90%;
+                margin-top: 10px;
+                object-fit: cover;
+
+                @include screen("tablet-landscape") {
+                    object-fit: contain;
+                }
+            }
+        }
+        &-info {
+            h3 {
+                text-transform: capitalize;
+            }
+            h4 {
+                margin: 10px 0;
+                text-transform: capitalize;
+            }
+
+            &__quantity {
+                margin: 10px 0;
+
+                & button {
+                    padding: 0;
+                    border: 1px solid rgb(112, 112, 112);
+                    min-width: 30px;
+                    min-height: 30px;
+                    line-height: 30px;
+                    border-radius: 0;
+                }
+                & input {
+                    border-radius: 0;
+                    border: 0;
+                    border-top: 1px solid rgb(112, 112, 112);
+                    border-bottom: 1px solid rgb(112, 112, 112);
+                    width: 50px;
+                    min-width: 40px;
+                    min-height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                }
+            }
+            & ul {
+                margin-top: 10px;
+                & li {
+                    display: inline-block;
+                    &:first-child {
+                        margin-right: 20px;
+                    }
+                    &:nth-child(2) {
+                        display: inline-flex;
+
+                        & span {
+                            &:nth-child(2) {
+                                display: inline-block;
+                                width: 20px;
+                                height: 20px;
+                                margin-left: 10px;
+                                border-radius: 3px;
+                            }
+                        }
+                    }
+                }
+            }
+            &__remove {
+                border: 0;
+                background: none;
+                margin-top: 10px;
+                color: #cc1919;
+                cursor: pointer;
+                padding: 0;
+            }
+        }
+    }
+}
+.empty-cart {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    & div {
+        & p {
+            margin-right: 80px;
+            font-size: 18px;
+            margin-bottom: 40px;
+            text-transform: capitalize;
+            @include screen("phone") {
+                margin-right: 0;
+            } 
+        }
+        & a {
+            text-decoration: none;
+            background-color: $accent-color;
+            color: $primary-color-text;
+            padding: 15px 20px;
+            border-radius: 40px;
+        }
+        &:nth-child(1) {
+            @include screen("phone") {
+                order: 1;
+                margin-top: 50px;
+                text-align: center;
+            }
+        }
+    }
+}

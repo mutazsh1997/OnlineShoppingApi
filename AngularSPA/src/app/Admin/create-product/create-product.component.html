@@ -1,0 +1,115 @@
+<div class="create-container">
+
+    <app-create-product-form *ngIf="createPorductPorgress == 1" (submitForm)="createProduct($event)">
+
+    </app-create-product-form>
+
+    <upload-images *ngIf="createPorductPorgress == 2" (imageToPass)="imageToPass($event)"
+        (updatePorgress)="changeCreatingPorgress()" [productId]="productId">
+
+    </upload-images>
+
+    <div *ngIf="createPorductPorgress == 3">
+        <form method="POST" [formGroup]="propProductForm" (ngSubmit)="propProduct()">
+
+            <div class="product-proprties" formArrayName="ProductColors">
+                <div class="product-proprties-container">
+                    <p>add color:</p>
+                    <button mat-icon-button type="button" (click)="addColor()" class="add-icon">+</button>
+                </div>
+                <div class="product-proprties-container">
+                    <div class="product-proprties__color" *ngFor="let colors of ProductColors.controls; index as i">
+                        <input [formControlName]="i" type="color" style="padding: 0;" value="#ff0000"
+                            name="ProductColors" id="ProductColors">
+                        <span (click)="deleteNameFieldColor(i)" class="remove-icon">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-proprties" formArrayName="ProductSizes">
+                <div class="product-proprties-container">
+                    <p>add size:</p>
+                    <button mat-icon-button type="button" (click)="addSize()" class="add-icon">+</button>
+                </div>
+                <div class="product-proprties-container">
+                    <div class="product-proprties__size" *ngFor="let size of ProductSizes.controls index as i">
+                        <input [formControlName]="i" type="text" placeholder="size" name="ProductSizes"
+                            id="ProductSizes">
+                        <span (click)="deleteNameFieldSize(i)" class="remove-icon">-</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-Group submit-btn">
+                <button mat-button [disabled]="propProductForm.invalid" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="createPorductPorgress == 4">
+        <div class="product-show">
+
+            <div class="product-show__image">
+                <img [src]="finalProduct.photoUrl" [alt]="finalProduct.name">
+            </div>
+            <div class="product-show__desc">
+                <ul>
+                    <li>
+                        product name: {{ finalProduct.name }}
+                    </li>
+                    <li>product price: {{ finalProduct.price}}</li>
+                    <li>
+                        <p>
+                            product description:
+                        </p>
+                        <p>
+                            {{finalProduct.productDescription}}
+                        </p>
+                    </li>
+                    <li>
+                        <p>product colors: </p>
+                        <span *ngFor="let color of finalProduct.colors"
+                            style="width: 30px; height: 30px; display: inline-block; margin-right: 10px;"
+                            [style.backgroundColor]="color.color"></span>
+                    </li>
+                    <li>
+                        <p>product sizes: </p>
+                        <span *ngFor="let size of finalProduct.sizes">
+                            {{size.size}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-Group submit-btn" style="text-align: center;">
+            <button mat-button (click)="ApprovedProduct()">ApprovedProduct</button>
+        </div>
+    </div>
+</div>
+<div class="creating-progress">
+    <ul #creatingProgress>
+        <li>
+            <div [ngClass]="{'active': createPorductPorgress == 1}">
+                1
+            </div>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div [ngClass]="{'active': createPorductPorgress == 2}">
+                2
+            </div>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div [ngClass]="{'active': createPorductPorgress == 3}">
+                3
+            </div>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div [ngClass]="{'active': createPorductPorgress == 4}">
+                4
+            </div>
+        </li>
+    </ul>
+</div>

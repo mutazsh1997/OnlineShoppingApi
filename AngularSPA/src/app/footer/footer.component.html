@@ -1,0 +1,39 @@
+<footer>
+    <section class="top-footer">
+        <div>
+            <h3>contact info</h3>
+            <ul>
+                <li>
+                    <mat-icon>location_on</mat-icon>
+                    location
+                </li>
+                <li>
+                    <span class="material-icons">
+                        phone
+                    </span>
+                    <span>
+                        46546512
+                    </span>
+                </li>
+                <li class="email">
+                    <mat-icon>email</mat-icon>
+                    <span>
+                        example@email.com
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="google-map">
+            <agm-map [latitude]="latitude" [longitude]="longitude">
+                <agm-marker [latitude]="latitude" [longitude]="longitude">
+
+                </agm-marker>
+            </agm-map>
+        </div>
+    </section>
+
+    <section class="bottom-footer">
+        <p>Copyright &copy; 2020 All Rights Reserved</p>
+        <p>Designed & Developed by <a href=""><b>mutaz</b></a></p>
+    </section>
+</footer>

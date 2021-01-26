@@ -1,0 +1,369 @@
+@import "../variables.scss";
+@import "responsive.mixin.scss";
+
+.mat-toolbar.mat-primary {
+  background-color: $primary-color-dark;
+}
+.test {
+  background-color: $primary-color;
+}
+
+.first-nav {
+  height: 30px;
+  border-bottom: 1px solid $primary-color-light;
+  display: flex;
+  justify-content: space-between;
+  @include screen("phone") {
+    & {
+      justify-content: center;
+    }
+  }
+}
+div.info-contact {
+  @include screen("phone") {
+    & {
+      display: none;
+    }
+  }
+  ul.info-contact__list {
+    display: flex;
+    font-size: 16px;
+
+    & li {
+      &:nth-child(1) {
+        margin-right: 10px;
+
+        &::after {
+          content: "";
+          width: 1px;
+          height: 20px;
+          background-color: $primary-color-light;
+          display: inline-block;
+          vertical-align: middle;
+          opacity: 0.5;
+          margin: 0 5px;
+        }
+      }
+      @include screen("tablet-portrait") {
+        &.email {
+          display: none;
+        }
+      }
+    }
+  }
+}
+mat-icon {
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+ul.right-content {
+  display: flex;
+
+  li.social {
+    cursor: inherit;
+    & a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+  }
+  & li.top-nav-content {
+    &:not(:last-child)::after {
+      content: "";
+      width: 1px;
+      height: 20px;
+      background-color: $primary-color-light;
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.5;
+      margin: 0 5px;
+    }
+    @include screen("smPhone") {
+      & button {
+        padding: 0;
+      }
+    }
+    span {
+      margin-left: 4px;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      position: relative;
+
+      span i {
+        transition: transform 0.3s;
+
+        &.rotateArrow {
+          transform: rotate(-180deg);
+        }
+      }
+
+      & ul.dorp-list {
+        position: absolute;
+        top: 32px;
+        font-weight: 400;
+        font-size: 16px;
+        background: #ffffff;
+        text-align: center;
+        padding: 5px;
+        color: #4a4a4a;
+        border-radius: 5px;
+        width: 100%;
+        z-index: 11;
+        box-shadow: 0 0 10px lighten($color: $primary-color-light, $amount: 1);
+        transform: scale(0);
+        transition: transform 0.3s;
+        transform-origin: top;
+        z-index: 100;
+      }
+
+      & ul.drop-list-show {
+        transform-origin: top center;
+        transition: transform 0.3s;
+        transform: scale(1);
+      }
+    }
+    //for language list
+    &:nth-child(2) {
+      & ul.dorp-list {
+        left: -3px;
+      }
+
+      & li {
+        text-transform: capitalize;
+        display: block;
+        transition: color 0.1s, background-color 0.3s;
+        cursor: pointer;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $primary-color-light;
+        }
+
+        &:hover {
+          color: #fff;
+          background-color: #4a4a4a;
+        }
+
+        &::after {
+          content: none;
+        }
+      }
+    }
+    //for account list
+    &:nth-child(3) {
+      & ul.dorp-list {
+        right: 0;
+        width: 220px;
+        background: #f1f1f1;
+        min-height: 160px;
+        padding: 15px 10px;
+
+        & li.auth-buttons {
+          display: flex;
+          justify-content: space-evenly;
+          padding-bottom: 8px;
+          border-bottom: 1px solid $divider-color;
+
+          & button {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            background-color: $primary-color-dark;
+            text-transform: capitalize;
+            color: $primary-color-text;
+            &:nth-child(1) {
+              background-color: darken($color: $primary-color-dark, $amount: 10);
+            }
+          }
+        }
+        & li.pagelinks {
+          text-align: center;
+          text-transform: capitalize;
+          cursor: pointer;
+          margin-top: 10px;
+          font-size: 14px;
+          transition: color 0.1s, background-color 0.3s;
+          color: $black-color;
+
+          & a {
+            color: inherit;
+            text-decoration: none;
+            width: 100%;
+            display: block;
+          }
+
+          &:hover {
+            color: #fff;
+            background-color: #4a4a4a;
+          }
+        }
+      }
+    }
+  }
+}
+.second-nav {
+  justify-content: space-between;
+  height: 100px;
+  position: relative;
+  flex-wrap: wrap;
+
+  @include screen("tablet-portrait") {
+    height: 150px;
+  }
+  & .title {
+    @include screen("tablet-portrait") {
+      width: 70%;
+    }
+    @include screen("smPhone") {
+      width: auto;
+    }
+
+    h2.title-logo {
+      font-size: 32px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 5px;
+      @include screen("tablet-portrait") {
+        font-size: 28px;
+      }
+      @include screen("phone") {
+        font-size: 18px;
+      }
+      & a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
+  & .search-small {
+    order: 1;
+    width: 90%;
+    z-index: 10;
+    top: 30px;
+  }
+  & .search-bar {
+    flex-grow: 0.5;
+    @include screen("tablet-portrait") {
+      order: 1;
+      margin-bottom: 10px;
+      flex-grow: 1;
+    }
+
+    & form {
+      position: relative;
+      & select,
+      & input {
+        padding: 10px;
+        height: 40px;
+        border: none;
+        @include screen("tablet-portrait") {
+          &.small-screen {
+            display: inline-block;
+          }
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+      & select {
+        width: 30%;
+        border-right: 1px solid $secondary-text-color;
+        border-radius: 5px 0 0 5px;
+        text-transform: capitalize;
+      }
+      & input {
+        position: relative;
+        width: 70%;
+        border-radius: 0px 5px 5px 0;
+        @include screen("tablet-portrait") {
+          width: 70%;
+        }
+      }
+      & label {
+        position: absolute;
+        right: 7px;
+        color: #1f1f1f6e;
+        cursor: pointer;
+        @include screen("phone") {
+          right: 7px;
+        }
+
+        & i {
+          font-size: 23px;
+
+          @include screen("phone") {
+            font-size: 18px;
+          }
+        }
+
+        @include screen("smPhone") {
+          right: 7px;
+        }
+      }
+      & button {
+        position: absolute;
+        right: 0px;
+        background: $primary-color;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &.activeSearch {
+          visibility: visible;
+          opacity: 1;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  & .cart-button {
+    margin-top: 5px;
+  }
+  & .mat-icon-button {
+    border-radius: 0;
+    width: auto;
+
+    @include screen("phone") {
+      & span.mat-button-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    & mat-icon {
+      font-size: 42px;
+      @include screen("phone") {
+        font-size: 32px;
+      }
+    }
+    & .item-in-cart {
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      font-size: 16px;
+      background: $accent-color;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      line-height: 25px;
+      text-align: center;
+      @include screen("phone") {
+        top: -8px;
+        left: 15px;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+      }
+    }
+    & .total-in-cart {
+      font-size: 24px;
+      margin-left: 15px;
+      @include screen("phone") {
+        margin-left: 0;
+      }
+    }
+  }
+}
